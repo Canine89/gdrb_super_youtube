@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BuyLinks } from "./BuyLinks";
+import { Typewriter } from "./Typewriter";
 
 export function HeroSection() {
   return (
@@ -23,9 +24,14 @@ export function HeroSection() {
           유튜브 <span className="text-youtube">AI</span>
           <br className="hidden sm:block" /> 비서 고용하기
         </h1>
-        <p className="mt-5 max-w-2xl text-[15px] font-semibold leading-[1.65] text-body">
-          도서와 함께 보면 좋은 복붙 프롬프트 사이트입니다. 타이핑하느라 고생하지 마세요. 복붙하세요.
-        </p>
+        <Typewriter
+          className="mt-5 max-w-2xl text-[15px] font-semibold leading-[1.65] text-body"
+          lines={[
+            "도서와 함께 보면 좋은 복붙 프롬프트 사이트입니다.",
+            "타이핑하느라 고생하지 마세요.",
+            "복붙하세요.",
+          ]}
+        />
 
         <div id="buy" className="mt-6">
           <BuyLinks />
