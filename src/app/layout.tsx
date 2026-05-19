@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "검색하고, 고르고, 복사해서 바로 쓰는 유튜브 자동화 프롬프트 모음.",
     locale: "ko_KR",
     type: "website",
-    images: [{ url: "/cover.png", width: 1373, height: 1435, alt: "유튜브 AI 비서 고용하기 표지" }],
+    images: [{ url: "/cover.png", width: 1880, height: 1435, alt: "유튜브 AI 비서 고용하기 표지" }],
   },
   twitter: {
     card: "summary_large_image",
