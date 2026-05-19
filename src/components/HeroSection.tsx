@@ -40,7 +40,7 @@ export function HeroSection() {
       </div>
 
       <div className="flex items-center justify-center border-t border-hairline bg-[linear-gradient(135deg,#333333_0%,#333333_52%,#f5f5f5_52%,#ffffff_100%)] px-5 py-7 sm:px-8 lg:border-l lg:border-t-0 lg:px-7">
-        <figure className="w-[190px] shrink-0 sm:w-[220px] lg:w-[244px]">
+        <figure className="w-[290px] shrink-0 sm:w-[420px] lg:w-[444px]">
           <Image
             src="/cover.png"
             alt="『유튜브 AI 비서 고용하기』 도서 표지"
