@@ -44,8 +44,8 @@ export function HeroSection() {
           <Image
             src="/cover.png"
             alt="『유튜브 AI 비서 고용하기』 도서 표지"
-            width={1927}
-            height={2000}
+            width={1373}
+            height={1435}
             priority
             className="h-auto w-full drop-shadow-[0_18px_36px_rgba(0,0,0,0.35)]"
           />
