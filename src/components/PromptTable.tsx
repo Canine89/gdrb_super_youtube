@@ -33,16 +33,12 @@ export function PromptTable({ rows, sortAsc, onToggleSort }: Props) {
       <div className="mt-6 hidden overflow-x-auto md:block">
         <table className="w-full table-fixed border-collapse text-left text-sm font-semibold leading-[1.45]">
           <colgroup>
-            <col className="w-[18%] lg:w-[16%]" />
-            <col className="w-[24%] lg:w-[22%]" />
-            <col className="w-[10%]" />
-            <col className="w-[36%] lg:w-[42%]" />
+            <col className="w-[12%]" />
+            <col className="w-[76%] lg:w-[78%]" />
             <col className="w-[12%] lg:w-[10%]" />
           </colgroup>
           <thead>
             <tr className="border-b-2 border-ink">
-              <th className="pb-4 pr-4 font-bold text-ink">장</th>
-              <th className="pb-4 pr-4 font-bold text-ink">절</th>
               <th className="pb-4 pr-4">
                 <button
                   type="button"
@@ -62,17 +58,13 @@ export function PromptTable({ rows, sortAsc, onToggleSort }: Props) {
           <tbody>
             {rows.length === 0 ? (
               <tr className="border-b border-hairline">
-                <td colSpan={5} className="py-12 text-center font-semibold text-muted">
+                <td colSpan={3} className="py-12 text-center font-semibold text-muted">
                   조건에 맞는 프롬프트가 없습니다.
                 </td>
               </tr>
             ) : null}
             {rows.map((row) => (
               <tr key={row.id} className="border-b border-hairline">
-                <td className="py-4 pr-4 align-top font-bold text-ink">{row.chapter}</td>
-                <td className="py-4 pr-4 align-top text-body">
-                  {row.section || "-"}
-                </td>
                 <td className="whitespace-nowrap py-4 pr-4 align-top text-body">
                   {row.page > 0 ? `${row.page}쪽` : "-"}
                 </td>
@@ -110,9 +102,7 @@ export function PromptTable({ rows, sortAsc, onToggleSort }: Props) {
             key={row.id}
             className="rounded-[var(--radius-md)] border border-hairline bg-canvas p-5 shadow-[0_8px_24px_rgba(36,36,36,0.04)]"
           >
-            <p className="text-sm font-bold text-ink">{row.chapter}</p>
-            <p className="mt-1 text-sm font-semibold text-body">{row.section || "-"}</p>
-            <p className="mt-1 text-sm font-semibold text-muted">
+            <p className="text-sm font-bold text-ink">
               {row.page > 0 ? `${row.page}쪽` : "쪽수 없음"}
             </p>
             <p className="mt-4 line-clamp-4 whitespace-pre-wrap text-sm font-semibold leading-[1.5] text-body">
