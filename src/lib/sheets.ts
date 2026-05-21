@@ -1,8 +1,9 @@
 import Papa from "papaparse";
-import type { PromptRow } from "./types";
+import type { AdData, PromptRow, StoreAd } from "./types";
 
 const SHEET_ID = "1qPLVF3gkzOl0adlRTbgtpuQpcEk3p_LOFLOfWuN83pk";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
+const ADS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=1157609173`;
 
 function pickHeader(
   row: Record<string, string>,
@@ -87,5 +88,38 @@ export async function fetchPrompts(): Promise<PromptRow[]> {
     return rows;
   } catch {
     return [];
+  }
+}
+
+const KNOWN_STORES = ["교보문고", "예스24", "알라딘"];
+
+export async function fetchAds(): Promise<AdData> {
+  try {
+    const res = await fetch(ADS_CSV_URL, { next: { revalidate: 60 } });
+    if (!res.ok) return { stores: [], events: [] };
+
+    const csv = await res.text();
+    const parsed = Papa.parse<string[]>(csv, { skipEmptyLines: "greedy" });
+    const rows = (parsed.data ?? []).slice(1);
+
+    const stores: StoreAd[] = [];
+    const events: AdData["events"] = [];
+
+    for (const row of rows) {
+      const label = (row[0] ?? "").trim();
+      const saleUrl = (row[1] ?? "").trim();
+      const lectureUrl = (row[2] ?? "").trim();
+      if (!label) continue;
+
+      if (KNOWN_STORES.includes(label) && saleUrl && lectureUrl) {
+        stores.push({ name: label, saleUrl, lectureUrl });
+      } else if (saleUrl) {
+        events.push({ title: label, url: saleUrl });
+      }
+    }
+
+    return { stores, events };
+  } catch {
+    return { stores: [], events: [] };
   }
 }
